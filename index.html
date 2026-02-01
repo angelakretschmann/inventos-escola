@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Brincar Aprendendo — Inventos para um Mundo Melhor</title>
+
+  <!-- EDITAR AQUI (descrição curta do seu projeto) -->
+  <meta name="description" content="Projeto extensionista de inclusão digital: inspiração, atividade prática e validação por feedback." />
+
+  <style>
+    :root{
+      --bg: #0b1220;
+      --card: rgba(255,255,255,.06);
+      --card2: rgba(255,255,255,.08);
+      --txt: rgba(255,255,255,.90);
+      --muted: rgba(255,255,255,.70);
+      --shadow: 0 12px 36px rgba(0,0,0,.35);
+      --radius: 18px;
+      --max: 1100px;
+
+      --a: #7c3aed; /* roxo */
+      --b: #22c55e; /* verde */
+      --c: #06b6d4; /* ciano */
+    }
+
+    *{ box-sizing: border-box; }
+    body{
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--txt);
+      background:
+        radial-gradient(900px 600px at 15% 10%, rgba(124,58,237,.35), transparent 55%),
+        radial-gradient(900px 600px at 85% 15%, rgba(6,182,212,.25), transparent 60%),
+        radial-gradient(900px 600px at 50% 90%, rgba(34,197,94,.18), transparent 60%),
+        linear-gradient(180deg, #050812 0%, #0b1220 55%, #070b16 100%);
+      line-height: 1.5;
+    }
+    a{ color: inherit; text-decoration: none; }
+
+    .nav{
+      position: sticky; top: 0; z-index: 20;
+      backdrop-filter: blur(10px);
+      background: rgba(11,18,32,.55);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .nav-inner{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 14px 18px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 14px;
+    }
+    .brand{ display:flex; align-items:center; gap: 10px; font-weight: 700; }
+    .logo{
+      width: 34px; height: 34px; border-radius: 12px;
+      background: linear-gradient(135deg, rgba(124,58,237,.95), rgba(6,182,212,.9));
+      box-shadow: 0 10px 26px rgba(124,58,237,.25);
+    }
+    .nav-links{
+      display:flex; gap: 10px; flex-wrap: wrap; justify-content: flex-end;
+      font-size: 14px; color: var(--muted);
+    }
+    .nav-links a{
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+    }
+    .nav-links a:hover{ background: rgba(255,255,255,.08); color: var(--txt); }
+
+    .wrap{ max-width: var(--max); margin: 0 auto; padding: 22px 18px 64px; }
+    .hero{
+      margin-top: 18px;
+      display: grid; gap: 18px;
+      grid-template-columns: 1.2fr .8fr;
+      align-items: stretch;
+    }
+    @media (max-width: 900px){ .hero{ grid-template-columns: 1fr; } }
+
+    .card{
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .hero-main{ padding: 22px; }
+    .kicker{
+      display:inline-flex; gap: 8px; align-items:center;
+      font-size: 12px; color: var(--muted);
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      padding: 6px 10px;
+      border-radius: 999px;
+    }
+    h1{
+      margin: 14px 0 10px;
+      font-size: clamp(28px, 4vw, 44px);
+      line-height: 1.06;
+      letter-spacing: -0.6px;
+    }
+    .sub{ color: var(--muted); font-size: 16px; max-width: 60ch; margin: 0 0 18px; }
+    .cta-row{ display:flex; gap: 10px; flex-wrap: wrap; margin-top: 14px; }
+
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap: 8px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform .12s ease, background .12s ease;
+    }
+    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.10); }
+    .btn.primary{
+      border: none;
+      background: linear-gradient(135deg, rgba(124,58,237,.95), rgba(6,182,212,.90));
+      box-shadow: 0 14px 30px rgba(6,182,212,.18);
+    }
+    .btn.primary:hover{ background: linear-gradient(135deg, rgba(124,58,237,1), rgba(6,182,212,1)); }
+    .mini{ font-size: 13px; color: var(--muted); margin-top: 10px; }
+
+    .hero-side{ padding: 18px; display:flex; flex-direction: column; gap: 12px; }
+    .pill{
+      display:flex; gap: 10px; align-items:flex-start;
+      padding: 14px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.10);
+    }
+    .dot{ width: 12px; height: 12px; border-radius: 999px; margin-top: 4px; background: rgba(255,255,255,.25); }
+    .dot.a{ background: rgba(124,58,237,.9); }
+    .dot.b{ background: rgba(34,197,94,.9); }
+    .dot.c{ background: rgba(6,182,212,.95); }
+    .pill strong{ display:block; margin-bottom: 2px; }
+    .pill span{ color: var(--muted); font-size: 14px; }
+
+    section{ margin-top: 18px; }
+    .section-head{
+      display:flex; align-items: flex-end; justify-content: space-between;
+      gap: 12px; flex-wrap: wrap;
+      margin: 26px 0 12px;
+    }
+    .section-head h2{ margin: 0; font-size: 22px; letter-spacing: -.2px; }
+    .section-head p{ margin: 0; color: var(--muted); max-width: 68ch; font-size: 14px; }
+
+    .grid{ display:grid; gap: 12px; grid-template-columns: repeat(12, 1fr); }
+    .col-4{ grid-column: span 4; }
+    .col-6{ grid-column: span 6; }
+    .col-12{ grid-column: span 12; }
+    @media (max-width: 900px){ .col-4, .col-6{ grid-column: span 12; } }
+
+    .tile{
+      padding: 16px;
+      background: var(--card2);
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: var(--radius);
+      box-shadow: 0 10px 26px rgba(0,0,0,.22);
+    }
+    .tag{
+      display:inline-flex;
+      gap: 8px; align-items:center;
+      font-size: 12px;
+      color: var(--muted);
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      padding: 5px 10px;
+      border-radius: 999px;
+      margin-bottom: 8px;
+    }
+    .tile h3{ margin: 6px 0 8px; font-size: 16px; }
+    .tile p{ margin: 0; color: var(--muted); font-size: 14px; }
+    .tile ul{ margin: 10px 0 0; padding-left: 18px; color: var(--muted); font-size: 14px; }
+    .tile li{ margin: 6px 0; }
+
+    .divider{ height: 1px; background: rgba(255,255,255,.10); margin: 16px 0; }
+
+    .note{
+      font-size: 13px; color: var(--muted);
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+    }
+
+    footer{
+      margin-top: 30px;
+      color: var(--muted);
+      font-size: 13px;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <!-- EDITAR AQUI (nome curto) -->
+        <div>Brincar Aprendendo</div>
+      </div>
+
+
+    <nav class="nav-links" aria-label="Navegação">
+  <a href="#sobre">Sobre</a>
+  <a href="#inspiracao">Inspiração</a>
+  <a href="#como-funciona">Como funciona</a>
+  <a href="#atividade">Atividade</a>
+  <a href="#validacao">Validação</a>
+</nav>
+
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="hero">
+      <div class="card hero-main">
+        <div class="kicker">Tecnologia aplicada à inclusão digital • Projeto extensionista</div>
+
+        <!-- EDITAR AQUI (título) -->
+        <h1>Inventos originários da escola para um mundo melhor</h1>
+
+        <!-- EDITAR AQUI (subtexto) -->
+        <p class="sub">
+          Um espaço simples e navegável (inclusive no celular) para inspirar, identificar problemas reais e criar
+          ideias de invenções — com validação por feedback.
+        </p>
+
+        <div class="cta-row">
+          <a class="btn primary" href="#atividade">Começar a atividade</a>
+          <a class="btn" href="#validacao">Dar feedback</a>
+          <a class="btn" href="https://artsandculture.google.com/project/once-upon-a-try" target="_blank" rel="noopener">
+            Abrir Once Upon a Try
+          </a>
+        </div>
+
+        <div class="mini">
+          No celular: você pode usar “Adicionar à tela inicial” para abrir como se fosse um app.
+        </div>
+      </div>
+
+      <aside class="card hero-side" aria-label="Resumo do projeto">
+        <div class="pill">
+          <div class="dot a" aria-hidden="true"></div>
+          <div>
+            <strong>Objetivo</strong>
+            <span>Promover inclusão digital e criatividade com recursos educacionais digitais.</span>
+          </div>
+        </div>
+        <div class="pill">
+          <div class="dot b" aria-hidden="true"></div>
+          <div>
+            <strong>Como funciona</strong>
+            <span>Inspiração → problema real → ideia de invenção → validação por feedback.</span>
+          </div>
+        </div>
+        <div class="pill">
+          <div class="dot c" aria-hidden="true"></div>
+          <div>
+            <strong>Resultados</strong>
+            <span>Feedback para analisar e evoluir o projeto (clareza, utilidade e melhorias).</span>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <section id="sobre">
+      <div class="section-head">
+        <h2>Sobre</h2>
+        <!-- EDITAR AQUI -->
+        <p>
+          Esta página facilita a participação da comunidade (famílias, estudantes e interessados), sem necessidade de encontro presencial.
+        </p>
+      </div>
+
+      <div class="grid">
+        <div class="tile col-6">
+          <div class="tag">🎯 Foco</div>
+          <h3>Inclusão digital + protagonismo</h3>
+          <p>
+            A tecnologia é usada como ferramenta de aprendizagem para criar e propor soluções para problemas reais.
+          </p>
+          <div class="divider"></div>
+          <p>
+            <strong>ODS:</strong> Educação de Qualidade (ODS 4), Inovação (ODS 9), Redução das Desigualdades (ODS 10).
+          </p>
+        </div>
+
+        <div class="tile col-6">
+          <div class="tag">🧩 Engenharia de Software</div>
+          <h3>Do problema ao protótipo</h3>
+          <ul>
+            <li><strong>Levantamento:</strong> descrever o problema e quem é afetado.</li>
+            <li><strong>Ideação:</strong> pensar em uma solução com objetivo claro.</li>
+            <li><strong>Validação:</strong> coletar feedback e registrar melhorias.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+<p class="mini">
+  📄 Documento complementar:
+  <a href="Fundamentacao_pedagogica_Inventos_escola.pdf" target="_blank" rel="noopener">
+    Fundamentação pedagógica do projeto (PDF)
+  </a>
+</p>
+
+
+    <section id="inspiracao">
+      <div class="section-head">
+        <h2>Inspiração</h2>
+        <p>
+          Explore invenções no Once Upon a Try e depois volte para criar sua própria ideia.
+        </p>
+      </div>
+
+      <div class="grid">
+        <div class="tile col-4">
+          <div class="tag">🔎 Passo 1</div>
+          <h3>Escolha 1 invenção</h3>
+          <p>Veja como ela resolveu um problema real.</p>
+        </div>
+        <div class="tile col-4">
+          <div class="tag">🧠 Passo 2</div>
+          <h3>Anote o problema raiz</h3>
+          <p>Qual necessidade motivou a invenção? Quem era impactado?</p>
+        </div>
+        <div class="tile col-4">
+          <div class="tag">✨ Passo 3</div>
+          <h3>Traga para sua realidade</h3>
+          <p>Que problema parecido existe na sua escola/comunidade?</p>
+        </div>
+      </div>
+    </section>
+
+<section id="como-funciona">
+  <div class="section-head">
+    <h2>Como funciona o projeto</h2>
+    <p>
+      A proposta pedagógica é organizada em etapas que incentivam a observação,
+      a criatividade e a aplicação do conhecimento científico.
+    </p>
+  </div>
+
+  <div class="grid">
+    <div class="tile col-4">
+      <div class="tag">🧩 Etapa 1</div>
+      <h3>Observação do cotidiano</h3>
+      <p>Os estudantes observam o cotidiano escolar ou comunitário e identificam problemas reais que podem ser analisados cientificamente.</p>
+    </div>
+
+    <div class="tile col-4">
+      <div class="tag">🔎 Etapa 2</div>
+      <h3>Inspiração em invenções</h3>
+      <p>Contato com invenções e patentes para compreender como ideias surgem para resolver problemas concretos.</p>
+    </div>
+
+    <div class="tile col-4">
+      <div class="tag">⚙️ Etapa 3</div>
+      <h3>Conexão com a Física</h3>
+      <p>Relação entre os problemas observados e conceitos de Física estudados em sala de aula.</p>
+    </div>
+
+    <div class="tile col-4">
+      <div class="tag">✨ Etapa 4</div>
+      <h3>Criação da ideia</h3>
+      <p>Proposição de ideias de invenções ou soluções, valorizando a criatividade e o protagonismo dos estudantes.</p>
+    </div>
+
+    <div class="tile col-4">
+      <div class="tag">💬 Etapa 5</div>
+      <h3>Discussão e validação</h3>
+      <p>Apresentação das ideias, troca de feedback e reflexão sobre possíveis melhorias.</p>
+    </div>
+
+    <div class="tile col-4">
+      <div class="tag">🌍 Etapa 6</div>
+      <h3>Reflexão final</h3>
+      <p>Análise do percurso realizado e da importância do conhecimento científico para a sociedade.</p>
+    </div>
+  </div>
+</section>
+
+    <section id="atividade">
+      <div class="section-head">
+        <h2>Atividade prática</h2>
+        <p>
+          Use este roteiro para registrar problema, objetivo e ideia de invenção. Você pode copiar e colar no formulário de validação.
+        </p>
+      </div>
+
+      <div class="grid">
+        <div class="tile col-12">
+          <div class="note">
+            <strong>Roteiro sugerido:</strong>
+            <ol>
+              <li>Qual é o problema real?</li>
+              <li>Quem é afetado?</li>
+              <li>Qual o impacto?</li>
+              <li>Qual a ideia de invenção/solução?</li>
+              <li>Que melhoria você faria depois?</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="validacao">
+      <div class="section-head">
+        <h2>O que você achou do projeto?</h2>
+        <p>
+           Sua opinião é muito importante para aprimorar esta proposta educacional.
+        </p>
+      </div>
+
+      <div class="grid">
+        <div class="tile col-6">
+          <div class="tag">📝 Formulário</div>
+          <h3>Enviar feedback</h3>
+          <p>
+            Clique no botão abaixo para abrir o formulário de validação.
+          </p>
+          <div class="divider"></div>
+
+          <!-- EDITAR AQUI (cole o link do seu Google Forms) -->
+          <a class="btn primary" href="https://docs.google.com/forms/d/e/1FAIpQLScf9RqH47pq4p0LugScdqg_-mrRuBGGW8Bo4qpC0VQhlkhXTA/viewform?usp=dialog" target="_blank" rel="noopener">
+            Abrir formulário de feedback
+
+          </a>
+
+          <p class="mini">
+            O formulário é rápido e leva menos de 2 minutos para responder
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <footer>
+      <p>
+        Autoria: Angela Kretschmann • (Engenharia de Software) — inclusão digital e inovação
+      </p>
+    </footer>
+  </main>
+</body>
+</html>
