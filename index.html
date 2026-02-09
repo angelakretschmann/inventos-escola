@@ -1,0 +1,765 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Brincar Aprendendo — Inventos para um Mundo Melhor</title>
+
+  <meta name="description" content="Projeto extensionista de inclusão digital: inspiração, atividade prática e validação por feedback." />
+
+  <style>
+    :root{
+      --bg: #0b1220;
+      --card: rgba(255,255,255,.06);
+      --card2: rgba(255,255,255,.08);
+      --txt: rgba(255,255,255,.90);
+      --muted: rgba(255,255,255,.70);
+      --shadow: 0 12px 36px rgba(0,0,0,.35);
+      --radius: 18px;
+      --max: 1100px;
+
+      --a: #7c3aed; /* roxo */
+      --b: #22c55e; /* verde */
+      --c: #06b6d4; /* ciano */
+      --y: #f59e0b; /* amarelo */
+      --r: #ef4444; /* vermelho */
+    }
+
+    *{ box-sizing: border-box; }
+    body{
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--txt);
+      background:
+        radial-gradient(900px 600px at 15% 10%, rgba(124,58,237,.35), transparent 55%),
+        radial-gradient(900px 600px at 85% 15%, rgba(6,182,212,.25), transparent 60%),
+        radial-gradient(900px 600px at 50% 90%, rgba(34,197,94,.18), transparent 60%),
+        linear-gradient(180deg, #050812 0%, #0b1220 55%, #070b16 100%);
+      line-height: 1.5;
+    }
+    a{ color: inherit; text-decoration: none; }
+
+    .nav{
+      position: sticky; top: 0; z-index: 20;
+      backdrop-filter: blur(10px);
+      background: rgba(11,18,32,.55);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .nav-inner{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 14px 18px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 14px;
+    }
+    .brand{ display:flex; align-items:center; gap: 10px; font-weight: 700; }
+    .logo{
+      width: 34px; height: 34px; border-radius: 12px;
+      background: linear-gradient(135deg, rgba(124,58,237,.95), rgba(6,182,212,.9));
+      box-shadow: 0 10px 26px rgba(124,58,237,.25);
+    }
+
+    .nav-links{
+      display:flex; gap: 10px; flex-wrap: wrap; justify-content: flex-end;
+      font-size: 14px;
+    }
+    .nav-links a{
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      color: rgba(255,255,255,.78);
+      transition: transform .12s ease, background .12s ease, color .12s ease, box-shadow .12s ease;
+    }
+    .nav-links a:hover{
+      transform: translateY(-1px);
+      color: var(--txt);
+      background: linear-gradient(135deg, rgba(124,58,237,.22), rgba(6,182,212,.16));
+      box-shadow: 0 10px 22px rgba(6,182,212,.10);
+    }
+
+    .wrap{ max-width: var(--max); margin: 0 auto; padding: 22px 18px 64px; }
+    .hero{
+      margin-top: 18px;
+      display: grid; gap: 18px;
+      grid-template-columns: 1.2fr .8fr;
+      align-items: stretch;
+    }
+    @media (max-width: 900px){ .hero{ grid-template-columns: 1fr; } }
+
+    .card{
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .hero-main{ padding: 22px; }
+    .kicker{
+      display:inline-flex; gap: 8px; align-items:center;
+      font-size: 12px; color: var(--muted);
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      padding: 6px 10px;
+      border-radius: 999px;
+    }
+    h1{
+      margin: 14px 0 10px;
+      font-size: clamp(28px, 4vw, 44px);
+      line-height: 1.06;
+      letter-spacing: -0.6px;
+    }
+    .sub{ color: var(--muted); font-size: 16px; max-width: 60ch; margin: 0 0 18px; }
+    .cta-row{ display:flex; gap: 10px; flex-wrap: wrap; margin-top: 14px; align-items: center; }
+
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap: 8px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform .12s ease, background .12s ease;
+    }
+    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.10); }
+    .btn.primary{
+      border: none;
+      background: linear-gradient(135deg, rgba(124,58,237,.95), rgba(6,182,212,.90));
+      box-shadow: 0 14px 30px rgba(6,182,212,.18);
+    }
+    .btn.primary:hover{ background: linear-gradient(135deg, rgba(124,58,237,1), rgba(6,182,212,1)); }
+
+    .btn.alt{
+      background: linear-gradient(135deg, rgba(34,197,94,.22), rgba(6,182,212,.16));
+      box-shadow: 0 12px 26px rgba(34,197,94,.10);
+    }
+    .btn.alt:hover{
+      background: linear-gradient(135deg, rgba(34,197,94,.32), rgba(6,182,212,.24));
+    }
+
+    .btn.math{
+      background: linear-gradient(135deg, rgba(245,158,11,.26), rgba(124,58,237,.18));
+      box-shadow: 0 12px 26px rgba(245,158,11,.10);
+    }
+    .btn.math:hover{
+      background: linear-gradient(135deg, rgba(245,158,11,.36), rgba(124,58,237,.26));
+    }
+
+    .btn.danger{
+      background: linear-gradient(135deg, rgba(239,68,68,.20), rgba(124,58,237,.14));
+      box-shadow: 0 12px 26px rgba(239,68,68,.10);
+    }
+    .btn.danger:hover{
+      background: linear-gradient(135deg, rgba(239,68,68,.30), rgba(124,58,237,.22));
+    }
+
+    .mini{ font-size: 13px; color: var(--muted); margin-top: 10px; }
+
+    .hero-side{ padding: 18px; display:flex; flex-direction: column; gap: 12px; }
+    .pill{
+      display:flex; gap: 10px; align-items:flex-start;
+      padding: 14px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.10);
+    }
+    .dot{ width: 12px; height: 12px; border-radius: 999px; margin-top: 4px; background: rgba(255,255,255,.25); }
+    .dot.a{ background: rgba(124,58,237,.9); }
+    .dot.b{ background: rgba(34,197,94,.9); }
+    .dot.c{ background: rgba(6,182,212,.95); }
+    .pill strong{ display:block; margin-bottom: 2px; }
+    .pill span{ color: var(--muted); font-size: 14px; }
+
+    section{ margin-top: 18px; }
+    .section-head{
+      display:flex; align-items: flex-end; justify-content: space-between;
+      gap: 12px; flex-wrap: wrap;
+      margin: 26px 0 12px;
+    }
+    .section-head h2{ margin: 0; font-size: 22px; letter-spacing: -.2px; }
+    .section-head p{ margin: 0; color: var(--muted); max-width: 68ch; font-size: 14px; }
+
+    .grid{ display:grid; gap: 12px; grid-template-columns: repeat(12, 1fr); }
+    .col-4{ grid-column: span 4; }
+    .col-6{ grid-column: span 6; }
+    .col-12{ grid-column: span 12; }
+    @media (max-width: 900px){ .col-4, .col-6{ grid-column: span 12; } }
+
+    .tile{
+      padding: 16px;
+      background: var(--card2);
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: var(--radius);
+      box-shadow: 0 10px 26px rgba(0,0,0,.22);
+    }
+    .tag{
+      display:inline-flex;
+      gap: 8px; align-items:center;
+      font-size: 12px;
+      color: var(--muted);
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      padding: 5px 10px;
+      border-radius: 999px;
+      margin-bottom: 8px;
+    }
+    .tile h3{ margin: 6px 0 8px; font-size: 16px; }
+    .tile p{ margin: 0; color: var(--muted); font-size: 14px; }
+    .tile ul{ margin: 10px 0 0; padding-left: 18px; color: var(--muted); font-size: 14px; }
+    .tile li{ margin: 6px 0; }
+
+    .divider{ height: 1px; background: rgba(255,255,255,.10); margin: 16px 0; }
+
+    .lbl{ display:block; margin: 10px 0 6px; color: var(--muted); font-size: 13px; }
+    .inp{
+      width: 100%;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.04);
+      color: var(--txt);
+      outline: none;
+      resize: vertical;
+    }
+    .inp:focus{
+      border-color: rgba(6,182,212,.65);
+      box-shadow: 0 0 0 3px rgba(6,182,212,.12);
+    }
+
+    /* Galeria */
+    .gallery-card{ padding: 0; overflow: hidden; }
+    .gallery-link{ display: block; border-radius: var(--radius); overflow: hidden; }
+    .gallery-img{
+      width: 100%;
+      height: 210px;
+      object-fit: cover;
+      display: block;
+      filter: saturate(1.05) contrast(1.02);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .gallery-body{ padding: 14px 16px 16px; }
+    .gallery-title{ margin: 0 0 6px; font-size: 16px; font-weight: 700; }
+    .gallery-desc{ margin: 0; color: var(--muted); font-size: 14px; }
+    .hint{ color: rgba(255,255,255,.65); font-size: 12px; margin-top: 10px; }
+
+    /* Modal Física/Mat */
+    .modal-backdrop{
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.55);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      z-index: 999;
+    }
+    .modal{
+      width: min(900px, 100%);
+      background: rgba(13,20,36,.92);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 18px;
+      box-shadow: 0 22px 60px rgba(0,0,0,.55);
+      overflow: hidden;
+    }
+    .modal-head{
+      display:flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 14px 16px;
+      border-bottom: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+    }
+    .modal-head strong{ font-size: 14px; }
+    .modal-close{
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      color: var(--txt);
+      border-radius: 12px;
+      padding: 8px 10px;
+      cursor: pointer;
+    }
+    .modal-body{
+      padding: 14px 16px 18px;
+      color: rgba(255,255,255,.85);
+      font-size: 14px;
+    }
+    .modal-body ul{ margin: 10px 0 0; padding-left: 18px; }
+    .modal-body li{ margin: 8px 0; color: rgba(255,255,255,.78); }
+
+    footer{
+      margin-top: 30px;
+      color: var(--muted);
+      font-size: 13px;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>Brincar Aprendendo</div>
+      </div>
+
+      <nav class="nav-links" aria-label="Navegação">
+        <a href="#sobre">Sobre</a>
+        <a href="#galeria">Galeria</a>
+        <a href="#como-funciona">Como funciona</a>
+        <a href="#rascunho">Rascunho</a>
+        <a href="#validacao">Validação</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="hero">
+      <div class="card hero-main">
+        <div class="kicker">Tecnologia aplicada à inclusão digital • Projeto extensionista</div>
+
+        <h1>Inventos originários da escola para um mundo melhor</h1>
+
+        <p class="sub">
+          Um espaço simples e navegável (inclusive no celular) para inspirar, identificar problemas reais e criar
+          ideias de invenções — com validação por feedback.
+        </p>
+
+        <div class="cta-row">
+          <a class="btn primary" href="#rascunho">Começar o rascunho</a>
+          <a class="btn" href="#validacao">Dar feedback</a>
+          <a class="btn" href="https://artsandculture.google.com/project/once-upon-a-try" target="_blank" rel="noopener">
+            Abrir Once Upon a Try
+          </a>
+        </div>
+
+        <div class="mini">
+          No celular: você pode usar “Adicionar à tela inicial” para abrir como se fosse um app.
+        </div>
+      </div>
+
+      <aside class="card hero-side" aria-label="Resumo do projeto">
+        <div class="pill">
+          <div class="dot a" aria-hidden="true"></div>
+          <div>
+            <strong>Objetivo</strong>
+            <span>Promover inclusão digital e criatividade com recursos educacionais digitais.</span>
+          </div>
+        </div>
+        <div class="pill">
+          <div class="dot b" aria-hidden="true"></div>
+          <div>
+            <strong>Como funciona</strong>
+            <span>Inspiração → problema real → ideia de invenção → validação por feedback.</span>
+          </div>
+        </div>
+        <div class="pill">
+          <div class="dot c" aria-hidden="true"></div>
+          <div>
+            <strong>Resultados</strong>
+            <span>Feedback para analisar e evoluir o projeto (clareza, utilidade e melhorias).</span>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <section id="sobre">
+      <div class="section-head">
+        <h2>Sobre</h2>
+        <p>
+          Esta página facilita a participação da comunidade (famílias, estudantes e interessados).
+        </p>
+      </div>
+
+      <div class="grid">
+        <div class="tile col-6">
+          <div class="tag">🎯 Foco</div>
+          <h3>Inclusão digital + protagonismo</h3>
+          <p>
+            A tecnologia é usada como ferramenta de aprendizagem para criar e propor soluções para problemas reais.
+          </p>
+          <div class="divider"></div>
+          <p>
+            <strong>ODS:</strong> Educação de Qualidade (ODS 4), Inovação (ODS 9), Redução das Desigualdades (ODS 10).
+          </p>
+        </div>
+
+        <div class="tile col-6">
+          <div class="tag">🧩 Engenharia de Software</div>
+          <h3>Do problema ao protótipo</h3>
+          <ul>
+            <li><strong>Levantamento:</strong> descrever o problema e quem é afetado.</li>
+            <li><strong>Ideação:</strong> pensar em uma solução com objetivo claro.</li>
+            <li><strong>Validação:</strong> coletar feedback e registrar melhorias.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <p class="mini">
+        📄 Documento complementar:
+        <a href="Fundamentacao_pedagogica_Inventos_escola.pdf" target="_blank" rel="noopener">
+          Fundamentação pedagógica do projeto (PDF)
+        </a>
+      </p>
+    </section>
+
+    <section id="galeria">
+      <div class="section-head">
+        <h2>Galeria de invenções</h2>
+        <p>
+          Clique nas imagens para abrir materiais de inspiração (abre em nova aba).
+        </p>
+      </div>
+
+      <div class="grid">
+        <div class="tile col-4 gallery-card">
+          <a class="gallery-link" href="https://artsandculture.google.com/story/AAUh2ThtWvvNIQ" target="_blank" rel="noopener">
+            <img class="gallery-img" src="images/invencao-1.jpg" alt="Inspiração 1 — invenções e ideias" />
+          </a>
+          <div class="gallery-body">
+            <p class="gallery-title">Inspiração 1</p>
+            <p class="gallery-desc">Uma história interativa do Once Upon a Try para despertar ideias.</p>
+            <div class="hint">Dica: abre em nova aba.</div>
+          </div>
+        </div>
+
+        <div class="tile col-4 gallery-card">
+          <a class="gallery-link" href="https://artsandculture.google.com/story/iwVRJGnH_UpFIw" target="_blank" rel="noopener">
+            <img class="gallery-img" src="images/invencao-2.jpg" alt="Inspiração 2 — inventoras e invenções" />
+          </a>
+          <div class="gallery-body">
+            <p class="gallery-title">Inspiração 2</p>
+            <p class="gallery-desc">Outro material do Once Upon a Try (mais específico) para guiar a criatividade.</p>
+            <div class="hint">Dica: abre em nova aba.</div>
+          </div>
+        </div>
+
+        <div class="tile col-4 gallery-card">
+          <a class="gallery-link" href="https://www.youtube.com/watch?v=JdfhrSVoItw" target="_blank" rel="noopener">
+            <img class="gallery-img" src="images/invencao-3.jpg" alt="Vídeo de inspiração sobre invenções" />
+          </a>
+          <div class="gallery-body">
+            <p class="gallery-title">Vídeo</p>
+            <p class="gallery-desc">Um vídeo para inspirar soluções e invenções com linguagem mais acessível.</p>
+            <div class="hint">Dica: abre em nova aba.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="como-funciona">
+      <div class="section-head">
+        <h2>Como funciona o projeto</h2>
+        <p>
+          A proposta pedagógica é organizada em etapas que incentivam a observação,
+          a criatividade e a aplicação do conhecimento científico.
+        </p>
+      </div>
+
+      <div class="grid">
+        <div class="tile col-4">
+          <div class="tag">🧩 Etapa 1</div>
+          <h3>Observação do cotidiano</h3>
+          <p>Identificar problemas reais na escola ou comunidade.</p>
+        </div>
+
+        <div class="tile col-4">
+          <div class="tag">🔎 Etapa 2</div>
+          <h3>Inspiração em invenções</h3>
+          <p>Conhecer exemplos e entender como soluções surgem.</p>
+        </div>
+
+        <div class="tile col-4">
+          <div class="tag">⚙️ Etapa 3</div>
+          <h3>Conexão com a Física</h3>
+          <p>Relacionar o problema com conceitos estudados em sala.</p>
+        </div>
+
+        <div class="tile col-4">
+          <div class="tag">✨ Etapa 4</div>
+          <h3>Criação da ideia</h3>
+          <p>Propor a solução/invenção, com objetivo e funcionamento.</p>
+        </div>
+
+        <div class="tile col-4">
+          <div class="tag">💬 Etapa 5</div>
+          <h3>Discussão e validação</h3>
+          <p>Apresentar e melhorar a ideia com feedback.</p>
+        </div>
+
+        <div class="tile col-4">
+          <div class="tag">🌍 Etapa 6</div>
+          <h3>Reflexão final</h3>
+          <p>Rever o percurso e a importância do conhecimento científico.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="rascunho">
+      <div class="section-head">
+        <h2>Rascunho da invenção</h2>
+        <p>
+          Preencha como um caderno digital. O conteúdo fica salvo neste dispositivo (não é enviado para ninguém).
+        </p>
+      </div>
+
+      <div class="grid">
+        <div class="tile col-12">
+          <div class="grid">
+            <div class="col-6">
+              <label class="lbl" for="p_problema"><strong>1) Qual problema você quer resolver?</strong></label>
+              <textarea class="inp" id="p_problema" rows="5" placeholder="Ex.: barulho excessivo nos corredores; estudantes não sabem o momento exato de trocar de sala..."></textarea>
+            </div>
+
+            <div class="col-6">
+              <label class="lbl" for="p_afetados"><strong>2) Quem é afetado?</strong></label>
+              <textarea class="inp" id="p_afetados" rows="5" placeholder="Ex.: estudantes, professores, equipe pedagógica..."></textarea>
+            </div>
+
+            <div class="col-6">
+              <label class="lbl" for="p_impacto"><strong>3) Qual o impacto do problema?</strong></label>
+              <textarea class="inp" id="p_impacto" rows="5" placeholder="Ex.: poluição sonora, ansiedade, atrasos e confusão..."></textarea>
+            </div>
+
+            <div class="col-6">
+              <label class="lbl" for="p_ideia"><strong>4) Qual é sua ideia de invenção/solução?</strong></label>
+              <textarea class="inp" id="p_ideia" rows="5" placeholder="Ex.: sinalização luminosa acima da porta (dentro e fora), com cores por etapa do tempo..."></textarea>
+            </div>
+
+            <div class="col-6">
+              <label class="lbl" for="p_materiais"><strong>5) Materiais/recursos necessários</strong></label>
+              <textarea class="inp" id="p_materiais" rows="4" placeholder="Ex.: LEDs, controlador simples, sensor (opcional), fonte de energia..."></textarea>
+            </div>
+
+            <div class="col-6">
+              <label class="lbl" for="p_teste"><strong>6) Como você testaria (protótipo)?</strong></label>
+              <textarea class="inp" id="p_teste" rows="4" placeholder="Ex.: piloto em 1 sala por 1 semana e depois ampliar..."></textarea>
+            </div>
+
+            <div class="col-12">
+              <label class="lbl" for="p_melhorias"><strong>7) O que você melhoraria depois?</strong></label>
+              <textarea class="inp" id="p_melhorias" rows="4" placeholder="Ex.: design, acessibilidade (contraste), custo e durabilidade..."></textarea>
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="cta-row">
+            <button class="btn primary" type="button" id="btnCopiar">Copiar rascunho</button>
+            <button class="btn alt" type="button" id="btnIA">Pedir ajuda à IA</button>
+            <button class="btn math" type="button" id="btnFM">Física e Matemática envolvidas</button>
+            <button class="btn danger" type="button" id="btnLimpar">Limpar rascunho</button>
+            <span class="mini" id="msgRascunho" style="display:none;"></span>
+          </div>
+
+          <p class="mini">
+            Dica: se quiser, copie o rascunho e cole no formulário de feedback ao final do site.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="validacao">
+      <div class="section-head">
+        <h2>O que você achou do projeto?</h2>
+        <p>
+          Sua opinião é muito importante para aprimorar esta proposta educacional.
+        </p>
+      </div>
+
+      <div class="grid">
+        <div class="tile col-6">
+          <div class="tag">📝 Formulário</div>
+          <h3>Enviar feedback</h3>
+          <p>
+            Clique no botão abaixo para abrir o formulário de validação.
+          </p>
+          <div class="divider"></div>
+
+          <a class="btn primary" href="https://docs.google.com/forms/d/e/1FAIpQLScf9RqH47pq4p0LugScdqg_-mrRuBGGW8Bo4qpC0VQhlkhXTA/viewform?usp=dialog" target="_blank" rel="noopener">
+            Abrir formulário de feedback
+          </a>
+
+          <p class="mini">
+            O formulário é rápido e leva menos de 2 minutos para responder.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>
+        Autoria: Angela Kretschmann • (Engenharia de Software) — inclusão digital e inovação
+      </p>
+    </footer>
+  </main>
+
+  <div class="modal-backdrop" id="fmBackdrop" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="fmTitle">
+      <div class="modal-head">
+        <strong id="fmTitle">Física e Matemática envolvidas</strong>
+        <button class="modal-close" type="button" id="fmClose">Fechar</button>
+      </div>
+      <div class="modal-body" id="fmBody"></div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const KEY = "inventos_rascunho_v1";
+      const ids = ["p_problema","p_afetados","p_impacto","p_ideia","p_materiais","p_teste","p_melhorias"];
+      const els = ids.map(id => document.getElementById(id));
+      const msg = document.getElementById("msgRascunho");
+
+      function showMsg(text){
+        msg.textContent = text;
+        msg.style.display = "inline";
+        setTimeout(() => msg.style.display = "none", 1400);
+      }
+
+      function serialize(){
+        const data = {};
+        ids.forEach((id, i) => data[id] = (els[i].value || "").trim());
+        return data;
+      }
+
+      function formatText(data){
+        return [
+          "RASCUNHO DA INVENÇÃO",
+          "",
+          "1) Problema:",
+          data.p_problema || "-",
+          "",
+          "2) Quem é afetado:",
+          data.p_afetados || "-",
+          "",
+          "3) Impacto:",
+          data.p_impacto || "-",
+          "",
+          "4) Ideia de solução/invenção:",
+          data.p_ideia || "-",
+          "",
+          "5) Materiais/recursos:",
+          data.p_materiais || "-",
+          "",
+          "6) Como testar (protótipo):",
+          data.p_teste || "-",
+          "",
+          "7) Melhorias futuras:",
+          data.p_melhorias || "-"
+        ].join("\n");
+      }
+
+      // carregar
+      try{
+        const saved = localStorage.getItem(KEY);
+        if(saved){
+          const data = JSON.parse(saved);
+          ids.forEach((id, i) => {
+            if(typeof data[id] === "string") els[i].value = data[id];
+          });
+        }
+      }catch(e){}
+
+      // salvar auto
+      els.forEach(el => {
+        el.addEventListener("input", () => {
+          try{ localStorage.setItem(KEY, JSON.stringify(serialize())); }catch(e){}
+        });
+      });
+
+      // copiar
+      document.getElementById("btnCopiar").addEventListener("click", async () => {
+        const text = formatText(serialize());
+        try{
+          await navigator.clipboard.writeText(text);
+          showMsg("Copiado!");
+        }catch(e){
+          showMsg("Não foi possível copiar automaticamente.");
+        }
+      });
+
+      // limpar
+      document.getElementById("btnLimpar").addEventListener("click", () => {
+        if(!confirm("Tem certeza que deseja limpar o rascunho?")) return;
+        els.forEach(el => el.value = "");
+        try{ localStorage.removeItem(KEY); }catch(e){}
+        showMsg("Rascunho limpo.");
+      });
+
+      // IA
+      document.getElementById("btnIA").addEventListener("click", () => {
+        const data = serialize();
+        const prompt =
+`Você é uma IA educacional. Ajude a melhorar a ideia de invenção abaixo, com linguagem apropriada para estudantes.
+
+TAREFAS:
+1) Sugira 3 soluções possíveis (uma simples, uma intermediária e uma avançada).
+2) Aponte materiais acessíveis e um teste prático.
+3) Indique cuidados de segurança.
+4) Relacione com conceitos de Física e Matemática (se fizer sentido).
+
+PROBLEMA: ${data.p_problema || "(não preenchido)"}
+AFETADOS: ${data.p_afetados || "(não preenchido)"}
+IMPACTO: ${data.p_impacto || "(não preenchido)"}
+IDEIA: ${data.p_ideia || "(não preenchido)"}
+MATERIAIS: ${data.p_materiais || "(não preenchido)"}
+TESTE: ${data.p_teste || "(não preenchido)"}
+MELHORIAS: ${data.p_melhorias || "(não preenchido)"}`
+;
+        const url = "https://chat.openai.com/?q=" + encodeURIComponent(prompt);
+        window.open(url, "_blank", "noopener");
+      });
+
+      // Física e Matemática (modal)
+      const fmBackdrop = document.getElementById("fmBackdrop");
+      const fmClose = document.getElementById("fmClose");
+      const fmBody = document.getElementById("fmBody");
+
+      function buildFM(data){
+        const hasLuz = /luz|led|lâmp|lampa|sinal|cor|luminos/i.test(data.p_ideia + " " + data.p_materiais);
+        const hasTempo = /hor[áa]rio|tempo|minuto|intervalo|cron|agenda/i.test(data.p_problema + " " + data.p_ideia);
+        const hasSom = /som|barulho|ru[íi]do|poluiç[ãa]o sonora/i.test(data.p_impacto + " " + data.p_problema);
+        const hasEletrica = /sensor|circuito|eletr|energia|bateria|fonte/i.test(data.p_materiais + " " + data.p_ideia);
+
+        const itens = [];
+        itens.push("<strong>Física</strong>");
+        if(hasLuz) itens.push("• Óptica e luz: cores, contraste e visibilidade (acessibilidade).");
+        if(hasEletrica) itens.push("• Eletricidade: circuito, alimentação, consumo de energia, segurança elétrica.");
+        if(hasSom) itens.push("• Acústica: ruído/poluição sonora e formas de reduzir estímulos auditivos.");
+        if(hasTempo) itens.push("• Medidas de tempo: ciclos, intervalos e sinalização em etapas.");
+
+        itens.push("<br><strong>Matemática</strong>");
+        if(hasTempo) itens.push("• Medidas e conversões de tempo (minutos/segundos), organização em etapas.");
+        itens.push("• Lógica: regras do tipo “se/então” (ex.: se faltam 2 minutos, luz amarela).");
+        itens.push("• Proporções: intensidade/visibilidade vs. distância e tamanho do ambiente.");
+
+        itens.push("<br><strong>Engenharia/Computação (opcional)</strong>");
+        itens.push("• Algoritmo simples de estados: verde → amarelo → vermelho.");
+        itens.push("• Teste piloto e coleta de feedback para melhorias.");
+
+        return `<p>Com base no seu rascunho, estes são os temas mais prováveis:</p><ul>${itens.map(t => `<li>${t}</li>`).join("")}</ul>`;
+      }
+
+      function openFM(){
+        const data = serialize();
+        fmBody.innerHTML = buildFM(data);
+        fmBackdrop.style.display = "flex";
+        fmBackdrop.setAttribute("aria-hidden", "false");
+      }
+      function closeFM(){
+        fmBackdrop.style.display = "none";
+        fmBackdrop.setAttribute("aria-hidden", "true");
+      }
+
+      document.getElementById("btnFM").addEventListener("click", openFM);
+      fmClose.addEventListener("click", closeFM);
+      fmBackdrop.addEventListener("click", (e) => { if(e.target === fmBackdrop) closeFM(); });
+      document.addEventListener("keydown", (e) => { if(e.key === "Escape") closeFM(); });
+    });
+  </script>
+</body>
+</html>
