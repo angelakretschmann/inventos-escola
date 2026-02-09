@@ -1,112 +1,109 @@
-Inventos na Escola — Brincar Aprendendo 🌱💡
+# 🌱 Inventos originários da escola para um mundo melhor
 
-Este repositório contém o projeto Inventos na Escola — Brincar Aprendendo, desenvolvido como atividade extensionista no curso de Engenharia de Software.
+Projeto extensionista desenvolvido no curso de **Engenharia de Software**, com foco em **inclusão digital, criatividade e protagonismo estudantil**, por meio da criação de ideias de invenções a partir de problemas reais do cotidiano escolar.
 
-O projeto propõe uma abordagem educacional interdisciplinar, articulando tecnologia, criatividade, Física e inclusão digital, por meio de um site interativo e acessível.
+---
 
-🌐 Site do projeto (GitHub Pages)
+## 🌐 Site do projeto
 
-👉 Acesse o projeto publicado:
+👉 **Acesse o projeto online:**  
 https://angelakretschmann.github.io/inventos-escola/
 
-O site é responsivo e pode ser utilizado tanto em computadores quanto em dispositivos móveis.
+O site é responsivo e pode ser acessado pelo computador ou celular.
 
-🎯 Objetivo do projeto
+---
 
-O projeto tem como principais objetivos:
+## 🎯 Objetivo do projeto
 
-Promover inclusão digital em contextos educacionais
+Promover um espaço digital simples e acessível para que estudantes:
 
-Estimular o protagonismo estudantil e a criatividade
+- Observem problemas reais da escola ou da comunidade  
+- Desenvolvam ideias de invenções ou soluções  
+- Relacionem essas ideias a conceitos de **Física, Matemática e Tecnologia**  
+- Registrem e validem suas propostas por meio de feedback  
 
-Relacionar problemas do cotidiano escolar com conceitos científicos, especialmente da Física
+O projeto busca estimular **criatividade, pensamento crítico e inclusão digital**, sem exigir conhecimentos técnicos avançados.
 
-Introduzir noções iniciais de engenharia, design de soluções e validação de ideias
+---
 
-Utilizar a tecnologia como ferramenta de aprendizagem ativa
+## 🧩 Como funciona
 
-A proposta permite a participação da comunidade escolar e de interessados externos.
+O percurso pedagógico proposto envolve as seguintes etapas:
 
-🧩 Estrutura da proposta pedagógica
+1. **Observação do cotidiano**  
+2. **Identificação de um problema real**  
+3. **Criação de uma ideia de invenção/solução**  
+4. **Registro em um rascunho digital interativo**  
+5. **Apoio por Inteligência Artificial (opcional)**  
+6. **Validação por formulário de feedback**
 
-O site está organizado em etapas que orientam o percurso do estudante:
+Todo o processo pode ser realizado online, sem necessidade de encontro presencial.
 
-Inspiração: contato com exemplos de invenções e soluções criativas
+---
 
-Observação do cotidiano: identificação de problemas reais
+## 📝 Rascunho da invenção (interatividade)
 
-Ideação: formulação da ideia de invenção
+O site oferece um **caderno digital** onde o estudante pode registrar:
 
-Rascunho digital: espaço interativo para registro das ideias (salvo localmente no navegador)
+- Problema identificado  
+- Quem é afetado  
+- Impactos observados  
+- Ideia de solução/invenção  
+- Materiais necessários  
+- Forma de teste (protótipo)  
+- Possíveis melhorias  
 
-Apoio com IA: geração de sugestões a partir do problema descrito
+As informações ficam salvas localmente no navegador e podem ser copiadas para o formulário final.
 
-Validação: coleta de feedback por meio de formulário online
+Há também botões de apoio para:
+- ✨ **Ajuda por IA** (geração de sugestões)  
+- 📐 **Identificação de conceitos de Física e Matemática envolvidos**
 
-Esse percurso integra aspectos pedagógicos, científicos e tecnológicos.
+---
 
-🛠️ Tecnologias utilizadas
+## 📄 Fundamentação pedagógica
 
-HTML5
+O projeto é acompanhado de um documento explicativo com base teórica e metodológica.
 
-CSS3
+👉 **Acesse o PDF:**  
+[Fundamentação pedagógica do projeto](Fundamentacao_pedagogica_Inventos_escola.pdf)
 
-JavaScript (básico)
+---
 
-O projeto foi desenvolvido sem frameworks, com foco na compreensão dos fundamentos e na simplicidade da implementação.
+## 🛠️ Tecnologias utilizadas
 
-📄 Documento complementar (PDF)
+- HTML5  
+- CSS3  
+- JavaScript (interações locais no navegador)
 
-O projeto conta com um documento em PDF que apresenta a fundamentação pedagógica da proposta, abordando:
+Projeto desenvolvido **sem frameworks**, com foco em clareza, simplicidade e aprendizado dos fundamentos.
 
-Justificativa educacional
+---
 
-Relação com o ensino de Física
+## 🎓 Contexto acadêmico
 
-Contexto extensionista
+Projeto desenvolvido como parte das **Atividades Extensionistas** do curso de:
 
-📄 O PDF está disponível neste repositório e também pode ser acessado diretamente pelo site.
+**Engenharia de Software — UNINTER**
 
-🧪 Interação e validação
+Com integração interdisciplinar entre:
+- Educação  
+- Física  
+- Direito  
+- Engenharia de Software  
 
-O site inclui um formulário de feedback (Google Forms), utilizado para:
+---
 
-Avaliar a clareza da proposta
+## 👩‍🏫 Autoria
 
-Verificar a usabilidade do site
+**Angela Kretschmann**  
+Doutora e Mestre em Direito  
+Licenciada em Física  
+Pesquisadora em Propriedade Intelectual e Inteligência Artificial  
+Estudante em finalização do curso de Engenharia de Software  
 
-Coletar sugestões de melhoria
+---
 
-Esses dados podem subsidiar reflexões e aperfeiçoamentos futuros do projeto.
+## 📌 Observação final
 
-🎓 Contexto acadêmico
-
-Projeto desenvolvido como parte das Atividades Extensionistas do curso de:
-
-Engenharia de Software
-
-A proposta integra conhecimentos das áreas de:
-
-Educação
-
-Física
-
-Direito e Propriedade Intelectual
-
-Engenharia de Software
-
-👩‍💻 Autoria
-
-Angela Kretschmann
-
-Doutora e Mestre em Direito
-
-Licenciada em Física
-
-Pesquisadora em Propriedade Intelectual e Inteligência Artificial
-
-Estudante em finalização do curso de Engenharia de Software
-
-📌 Observação final
-
-Este projeto tem caráter educacional e experimental, não comercial, e busca demonstrar a aplicação integrada de diferentes áreas do conhecimento em uma proposta de aprendizagem ativa, criativa e socialmente orientada.
+Este projeto integra um conjunto maior de iniciativas acadêmicas voltadas à educação, inovação e tecnologia, e representa a aplicação prática de conhecimentos interdisciplinares em um ambiente digital acessível.
