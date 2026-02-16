@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="pt-BR">
 <head>
@@ -308,8 +309,8 @@
         <a href="#sobre">Sobre</a>
         <a href="#galeria">Galeria</a>
         <a href="#como-funciona">Como funciona</a>
-        <a href="#rascunho">Rascunho</a>
-        <a href="#validacao">Validação</a>
+        <a href="#rascunho">Atividade</a>
+        <a href="#validacao">Feedback</a>
       </nav>
     </div>
   </header>
@@ -317,25 +318,23 @@
   <main class="wrap">
     <div class="hero">
       <div class="card hero-main">
-        <div class="kicker">Tecnologia aplicada à inclusão digital • Projeto extensionista</div>
+        <div class="kicker">Atividade educativa • inventos • criatividade • fácil no celular</div>
 
-        <h1>Inventos originários da escola para um mundo melhor</h1>
+        <h1>Inventos Escola: ideias para melhorar a escola e a comunidade</h1>
 
         <p class="sub">
-          Um espaço simples e navegável (inclusive no celular) para inspirar, identificar problemas reais e criar
-          ideias de invenções — com validação por feedback.
+          Para estudantes (com apoio de professores). Explore inspirações, identifique um problema real e crie sua ideia de invenção.
         </p>
 
         <div class="cta-row">
-          <a class="btn primary" href="#rascunho">Começar o rascunho</a>
-          <a class="btn" href="#validacao">Dar feedback</a>
-          <a class="btn" href="https://artsandculture.google.com/project/once-upon-a-try" target="_blank" rel="noopener">
-            Abrir Once Upon a Try
-          </a>
+          <a class="btn primary" href="#como-funciona">Sou aluno(a): começar</a>
+          <a class="btn alt" href="#para-professores">Sou professor(a)</a>
+          <a class="btn" href="#validacao">Quero avaliar / dar feedback</a>
         </div>
 
         <div class="mini">
-          No celular: você pode usar “Adicionar à tela inicial” para abrir como se fosse um app.
+          Depois de entender o passo a passo, vá para
+          <a href="#rascunho" style="text-decoration: underline;">Rascunho da invenção</a>.
         </div>
       </div>
 
@@ -498,11 +497,45 @@
       </div>
     </section>
 
+    <!-- NOVO: seção curta para orientar professores -->
+    <section id="para-professores">
+      <div class="section-head">
+        <h2>Para professores</h2>
+        <p>
+          Use o site como atividade guiada: inspiração → problema → ideia → discussão. Ideal para Ciências e Projetos.
+        </p>
+      </div>
+
+      <div class="grid">
+        <div class="tile col-6">
+          <div class="tag">👩‍🏫 Sugestão rápida</div>
+          <h3>Como aplicar em sala</h3>
+          <ul>
+            <li>Mostre a Galeria (5–10 min) para inspirar.</li>
+            <li>Leia “Como funciona” (2 min) com a turma.</li>
+            <li>Peça que preencham o Rascunho em duplas.</li>
+            <li>Finalize com apresentação e feedback.</li>
+          </ul>
+        </div>
+
+        <div class="tile col-6">
+          <div class="tag">📄 Material</div>
+          <h3>Fundamentação pedagógica</h3>
+          <p>Se quiser, consulte o PDF com a base do projeto.</p>
+          <div class="divider"></div>
+          <a class="btn primary" href="Fundamentacao_pedagogica_Inventos_escola.pdf" target="_blank" rel="noopener">
+            Abrir PDF
+          </a>
+        </div>
+      </div>
+    </section>
+
     <section id="rascunho">
       <div class="section-head">
         <h2>Rascunho da invenção</h2>
         <p>
-          Preencha como um caderno digital. O conteúdo fica salvo neste dispositivo (não é enviado para ninguém).
+          Esta é a atividade principal. Responda às perguntas para criar sua ideia de invenção.
+          (Fica salvo apenas neste celular/computador.)
         </p>
       </div>
 
@@ -737,7 +770,7 @@ MELHORIAS: ${data.p_melhorias || "(não preenchido)"}`
         itens.push("• Lógica: regras do tipo “se/então” (ex.: se faltam 2 minutos, luz amarela).");
         itens.push("• Proporções: intensidade/visibilidade vs. distância e tamanho do ambiente.");
 
-        itens.push("<br><strong>Engenharia/Computação (opcional)</strong>"); 
+        itens.push("<br><strong>Engenharia/Computação (opcional)</strong>");
         itens.push("• Algoritmo simples de estados: verde → amarelo → vermelho.");
         itens.push("• Teste piloto e coleta de feedback para melhorias.");
 
@@ -763,3 +796,6 @@ MELHORIAS: ${data.p_melhorias || "(não preenchido)"}`
   </script>
 </body>
 </html>
+```
+
+Se você colar isso e depois me disser “continua confuso no celular porque aparece X primeiro”, eu ajusto a ordem (ex.: colocar o “Como funciona” antes da galeria) **sem mudar o design**.
